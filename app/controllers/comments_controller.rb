@@ -15,9 +15,9 @@ class CommentsController < ApplicationController
   end
 
   def create
-    commentable = commentable_klass(comment_params[:commentable_type]).find(comment_params[:commentable_id])
+    @commentable = commentable_klass(comment_params[:commentable_type]).find(comment_params[:commentable_id])
 
-    authorize! :read, commentable
+    authorize! :read, @commentable
 
     @comment = Comment.new(comment_params)
     @comment.format = "sml"
